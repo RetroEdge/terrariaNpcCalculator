@@ -1,5 +1,6 @@
 package me.retro.npcCalculator.util;
 
+import me.retro.npcCalculator.ConfigValues;
 import me.retro.npcCalculator.util.enums.BiomePreference;
 import me.retro.npcCalculator.util.enums.NpcImportance;
 import me.retro.npcCalculator.util.enums.NpcPreference;
@@ -37,8 +38,6 @@ public record Npc(String id, NpcImportance importance,
     }
 
     public float getHappiness(Npc[] neighbors, String biome) {
-        float maxHappiness = 1.5f;  // These var names are somewhat misleading; 0.75 is a better, or "happier" case then 1.5.
-        float minHappiness = 0.75f; // for readability of code, however, they are called by the numerical value instead.
         float happiness = 1.0f;
 
         Map<String[], NpcPreference> npcTable = new HashMap<>();
@@ -74,10 +73,10 @@ public record Npc(String id, NpcImportance importance,
         }
 
         if (neighbors.length >= 3) {
-            happiness = HelperMethods.clamp(happiness * NpcPreference.OVERCROWDED.value, minHappiness, maxHappiness);
+            happiness = HelperMethods.clamp(happiness * NpcPreference.OVERCROWDED.value, ConfigValues.minHappiness, ConfigValues.maxHappiness);
             return Math.round(happiness * 100) / 100.0f;
         }
-        happiness = HelperMethods.clamp(happiness * NpcPreference.SOLITUDE.value, minHappiness, maxHappiness);
+        happiness = HelperMethods.clamp(happiness * NpcPreference.SOLITUDE.value, ConfigValues.minHappiness, ConfigValues.maxHappiness);
         return Math.round(happiness * 100) / 100.0f;
     }
 
