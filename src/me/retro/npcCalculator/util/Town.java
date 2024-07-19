@@ -2,11 +2,36 @@ package me.retro.npcCalculator.util;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Objects;
 
 public class Town {
     private final Npc[] townNpcs;
-
     private final String biome;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Town town = (Town) o;
+        return Arrays.equals(townNpcs, town.townNpcs) && Objects.equals(getBiome(), town.getBiome());
+    }
+
+    @Override
+    public int hashCode() {
+        int result = Objects.hash(biome);
+        result = 31 * result + Arrays.hashCode(townNpcs);
+        return result;
+    }
+
+    @Override
+    public String toString() {
+        return "Town{" +
+                "townNpcs=" + Arrays.toString(townNpcs) +
+                ", biome='" + biome + '\'' +
+                ", averageHappiness=" + this.getAverageHappiness() +
+                ", averageWeightedHappiness=" + this.getWeightedAverageHappiness() +
+                '}';
+    }
 
     public Town(String biome, Npc... npcs) {
         this.townNpcs = npcs;

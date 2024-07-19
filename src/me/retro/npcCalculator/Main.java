@@ -1,23 +1,26 @@
 package me.retro.npcCalculator;
 
+import me.retro.npcCalculator.util.HelperMethods;
 import me.retro.npcCalculator.util.Npc;
 import me.retro.npcCalculator.util.Town;
-import me.retro.npcCalculator.util.singletons.BiomeIds;
 import me.retro.npcCalculator.util.singletons.Npcs;
+
+import java.util.HashSet;
+import java.util.List;
 
 public class Main {
 
-    public static void main(String[] args) {
-        Town town = new Town(BiomeIds.CAVERN, Npcs.GOBLIN_TINKERER, Npcs.MECHANIC, Npcs.DYE_TRADER);
+    static HashSet<Npc> npcSet = new HashSet<>(List.of(Npcs.MECHANIC, Npcs.GOBLIN_TINKERER, Npcs.DYE_TRADER));
 
-        System.out.println("Town Biome: " + town.getBiome());
+    public static void main(String[] args) {
+        Town optimalTown = HelperMethods.optimalTownFromNpcSet(npcSet);
+        System.out.printf("Biome: %s%n", optimalTown.getBiome());
+        System.out.printf("Average Weighted Happiness: %f%n", optimalTown.getWeightedAverageHappiness());
+        System.out.printf("Average Happiness: %f%n", optimalTown.getAverageHappiness());
         System.out.println();
-        for (Npc npc: town.getNpcs()) {
-            System.out.println(npc.id() + " happiness: " + npc.getHappiness(town));
+        for (Npc npc : optimalTown.getNpcs()) {
+            System.out.printf("%1$s: %2$f%n", npc.id(), npc.getHappiness(optimalTown));
         }
-        System.out.println();
-        System.out.println("Average happiness:          " + town.getAverageHappiness());
-        System.out.println("Weighted average happiness: " + town.getWeightedAverageHappiness());
     }
 }
 

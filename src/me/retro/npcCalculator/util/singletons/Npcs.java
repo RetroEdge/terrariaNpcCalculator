@@ -3,9 +3,8 @@ package me.retro.npcCalculator.util.singletons;
 import me.retro.npcCalculator.util.Npc;
 import me.retro.npcCalculator.util.enums.NpcImportance;
 
-import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.List;
-import java.util.Set;
 
 public abstract class Npcs {
     public static final Npc GUIDE = new Npc(NpcIds.GUIDE, NpcImportance.ZERO,
@@ -219,5 +218,5 @@ public abstract class Npcs {
             null
     );
 
-    public static final Set<Npc> allNpcs = new HashSet<>(List.of(Npcs.GUIDE, Npcs.MERCHANT, Npcs.NURSE, Npcs.DEMOLITIONIST, Npcs.DYE_TRADER, Npcs.ANGLER, Npcs.ZOOLIGIST, Npcs.DRYAD, Npcs.PAINTER, Npcs.GOLFER, Npcs.ARMS_DEALER, Npcs.TAVERNKEEP, Npcs.STYLIST, Npcs.GOBLIN_TINKERER, Npcs.WITCH_DOCTOR, Npcs.CLOTHIER, Npcs.MECHANIC, Npcs.PARTY_GIRL, Npcs.WIZARD, Npcs.TAX_COLLECTOR, Npcs.TRUFFLE, Npcs.PIRATE, Npcs.STEAM_PUNKER, Npcs.CYBORG, Npcs.SANTA_CLAUS, Npcs.PRINCESS));
+    public static final LinkedHashSet<Npc> allNpcs = new LinkedHashSet<>(List.of(Npcs.GUIDE, Npcs.MERCHANT, Npcs.NURSE, Npcs.DEMOLITIONIST, Npcs.DYE_TRADER, Npcs.ANGLER, Npcs.ZOOLIGIST, Npcs.DRYAD, Npcs.PAINTER, Npcs.GOLFER, Npcs.ARMS_DEALER, Npcs.TAVERNKEEP, Npcs.STYLIST, Npcs.GOBLIN_TINKERER, Npcs.WITCH_DOCTOR, Npcs.CLOTHIER, Npcs.MECHANIC, Npcs.PARTY_GIRL, Npcs.WIZARD, Npcs.TAX_COLLECTOR, Npcs.TRUFFLE, Npcs.PIRATE, Npcs.STEAM_PUNKER, Npcs.CYBORG, Npcs.SANTA_CLAUS, Npcs.PRINCESS));
 }
